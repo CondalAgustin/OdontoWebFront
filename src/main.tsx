@@ -7,13 +7,16 @@ import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { LoaderProvider } from './context/LoaderContext'
+import { TriviaProvider } from './hook/TriviaContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
         <LoaderProvider>
-          <App />
+          <TriviaProvider>
+            <App />
+          </TriviaProvider>
         </LoaderProvider>
       </AuthProvider>
     </BrowserRouter>

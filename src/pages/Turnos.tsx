@@ -53,6 +53,7 @@ const Turnos = () => {
 
   const buscarHorarios = async () => {
     if (!fecha) return
+    console.log(fecha)
     const res = await fetch(`${API_URL}/Turnos/disponibles?fecha=${fecha}`)
     const data = await res.json()
     setHorarios(data)

@@ -17,7 +17,9 @@
     "@mui/x-date-pickers": "^8.8.0",
     "@mui/x-date-pickers-pro": "^8.8.0",
     "aos": "^2.3.4",
+    "canvas-confetti": "^1.9.4",
     "dayjs": "^1.11.13",
+    "framer-motion": "^12.23.24",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.6.3",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react-swc": "^3.10.2",

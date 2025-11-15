@@ -9,6 +9,8 @@ import UsuarioCrearAdmin from '../pages/Admin/UsuarioCrearAdmin'
 import UsuarioRegistro from '../pages/UsuarioRegistro'
 import Perfil from '../pages/Perfil'
 import MisTurnos from '../pages/MisTurnos'
+import Trivia from '../pages/Trivia/Trivia'
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -19,6 +21,12 @@ const AppRoutes = () => {
       <Route path="/perfil" element={<Perfil />} />
       <Route path="/misTurnos" element={<MisTurnos />} />
 
+      <Route
+        path="/trivia"
+        element={
+          <Trivia />
+        }
+      />
 
       <Route
         path="/admin"

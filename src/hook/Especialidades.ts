@@ -6,7 +6,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const useEspecialidades = () => {
   const [especialidades, setEspecialidades] = useState<any[]>([]);
+  const [preguntasRandom, setPreguntasRandom] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [ranking, setRanking] = useState<any[]>([]);
   const { setLoading } = useLoader();
 
   const obtenerEspecialidades = async () => {
@@ -15,6 +17,56 @@ export const useEspecialidades = () => {
       const res = await fetch(`${API_URL}/Servicios`);
       const data = await res.json();
       setEspecialidades(data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const registrarPuntaje = async (usuarioid: number, puntaje: number) => {
+    try {
+      setLoading(true);
+      const res = await fetch(`${API_URL}/Servicios/registrarPuntaje`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ usuarioid, puntaje }),
+      });
+
+      if (!res.ok) throw new Error("Error al registrar puntaje");
+      const data = await res.json();
+      await obtenerTopJugadores();
+      return data;
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const obtenerTopJugadores = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(`${API_URL}/Servicios/topJugadores`);
+      if (!res.ok) throw new Error("Error al obtener el top de jugadores");
+
+      const data = await res.json();
+      setRanking(data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+  const obtenerPreguntas = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(`${API_URL}/Servicios/obtenerPreguntas`);
+      const data = await res.json();
+      setPreguntasRandom(data);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -72,7 +124,12 @@ export const useEspecialidades = () => {
   return {
     especialidades,
     error,
+    ranking,
+    preguntasRandom,
     obtenerEspecialidades,
+    registrarPuntaje,
+    obtenerTopJugadores,
+    obtenerPreguntas,
     crearEspecialidad,
     editarEspecialidad,
     eliminarEspecialidad,

@@ -1,8 +1,8 @@
- // src/components/Footer.tsx
+// src/components/Footer.tsx
 import { Box, Container, Typography, IconButton, Stack } from '@mui/material'
-import { Facebook, Instagram, YouTube, WhatsApp } from '@mui/icons-material'
+import { Facebook, Instagram, YouTube, WhatsApp, GitHub } from '@mui/icons-material'
 import { useTheme } from '@mui/material/styles'
- import logo from '../assets/Logo.png'
+import logo from '../assets/Logo.png'
 
 const Footer = () => {
   const theme = useTheme()
@@ -12,7 +12,7 @@ const Footer = () => {
       sx={{
         backgroundColor: theme.palette.primary.main,
         color: '#fff',
-        py: 2, 
+        py: 2,
         mt: 'auto',
       }}
     >
@@ -29,7 +29,7 @@ const Footer = () => {
           {/* Logo + Nombre */}
           <Stack direction="row" alignItems="center" spacing={1}>
             <img
-              src= {logo}
+              src={logo}
               alt="Logo"
               style={{ height: 40 }}
             />
@@ -63,8 +63,22 @@ const Footer = () => {
           variant="body2"
           sx={{ textAlign: 'center', mt: 0, opacity: 0.8 }}
         >
-          ©2025 OdontoWeb. Todos los derechos reservados.
+          Nicolás A. Condal © - 2025 OdontoWeb. Todos los derechos reservados.
         </Typography>
+        <Typography
+          variant="body2"
+          sx={{ textAlign: 'center', mt: 0.5, opacity: 0.85, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 0.5 }}
+        >
+          Consultas para tus proyectos ➟
+          <IconButton
+            href="https://github.com/CondalAgustin"
+            target="_blank"
+            sx={{ color: 'white', padding: 0, fontSize: 16 }}
+          >
+            <GitHub />
+          </IconButton>
+        </Typography>
+
       </Container>
     </Box>
   )

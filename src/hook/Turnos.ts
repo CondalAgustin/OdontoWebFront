@@ -3,10 +3,9 @@ import { useLoader } from "../context/LoaderContext";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const useTurnos = () => {
+ export const useTurnos = () => {
   const { setLoading } = useLoader();
   const [turnos, setTurnos] = useState<any[]>([]);
-  const [historial, setHistorial] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const obtenerMisTurnos = async (idUsuario: number) => {
@@ -15,7 +14,8 @@ export const useTurnos = () => {
       const res = await fetch(`${API_URL}/Turnos/mis-turnos/${idUsuario}`);
       if (!res.ok) throw new Error("Error al obtener turnos");
       const data = await res.json();
-      setTurnos(data);
+      setTurnos(data); // 👈 usamos un solo estado
+      return data;
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -29,7 +29,8 @@ export const useTurnos = () => {
       const res = await fetch(`${API_URL}/Turnos/historial-turnos/${idUsuario}`);
       if (!res.ok) throw new Error("Error al obtener historial");
       const data = await res.json();
-      setHistorial(data);
+      setTurnos(data); // 👈 actualizamos el mismo estado
+      return data;
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -53,10 +54,10 @@ export const useTurnos = () => {
 
   return {
     turnos,
-    historial,
     error,
     obtenerMisTurnos,
     obtenerHistorialTurnos,
     cancelarTurno,
   };
 };
+

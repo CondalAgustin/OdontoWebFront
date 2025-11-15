@@ -120,6 +120,21 @@ const MisTurnos = () => {
                 {vista === 'futuros' ? 'Mis Turnos' : 'Historial de Turnos'}
             </Typography>
 
+            {vista === 'futuros' && (
+                <Alert
+                    severity="info"
+                    sx={{
+                        mb: 5,
+                        backgroundColor: 'rgba(33, 150, 243, 0.1)', // azul clarito
+                        border: '1px solid #2196f3',
+                        color: '#0d47a1',
+                        fontWeight: 500,
+                    }}
+                >
+                    Solo podés cancelar turnos con al menos 12 horas de anticipación.
+                </Alert>
+            )}
+
             {turnos.length === 0 ? (
                 <Typography>No tenés turnos registrados.</Typography>
             ) : (

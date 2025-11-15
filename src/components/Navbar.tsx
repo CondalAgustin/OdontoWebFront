@@ -137,6 +137,9 @@ const Navbar = () => {
               <Button color="inherit" component={Link} to="/turnos">
                 Turnos
               </Button>
+               <Button color="inherit" component={Link} to="/trivia">
+                Trivia 
+              </Button>
               {auth?.rol === 'paciente' && (
                 <Button color="inherit" component={Link} to="/misTurnos">
                   Mis turnos
